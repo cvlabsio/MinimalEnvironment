@@ -10,6 +10,7 @@ if [ $MY_OS = "Darwin" ]; then
     alias ls='ls -GFh'
 elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
+    alias vi='vim'
 fi
 
 # PROMPT
