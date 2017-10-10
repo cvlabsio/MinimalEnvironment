@@ -6,11 +6,14 @@
 MY_OS=`uname -s`
 
 # LS COLORS
+# TERMINAL COLORS
 if [ $MY_OS = "Darwin" ]; then
     alias ls='ls -GFh'
+    export TERM=xterm-256color
 elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
     alias vi='vim'
+    export TERM=linux
 fi
 
 # PROMPT
