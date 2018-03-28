@@ -2,6 +2,12 @@
 # .bashrc is executed for interactive non-login shells
 #  Login Shells = Via Putty or ssh
 
+### FUNCTIONS
+# Add git branch name to bash prompt from https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 # Darwin or Linux
 MY_OS=`uname -s`
 
@@ -24,7 +30,7 @@ fi
 export EDITOR=vim
 
 # PROMPT
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h \[\033[33;1m\]\w \[\033[36m\] \D{%F %T}\[\033[m\]\n$ "
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h \[\033[33;1m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[36m\] \D{%F %T}\[\033[m\]\n$ "
 
 # COLORS
 export CLICOLOR=1

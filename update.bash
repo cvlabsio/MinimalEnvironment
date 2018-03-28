@@ -4,6 +4,7 @@ FILES="
 .bash_profile
 .bashrc
 .vimrc
+.tmux.conf
 "
 
 for file in $FILES
