@@ -16,6 +16,10 @@ MY_OS=`uname -s`
 if [ $MY_OS = "Darwin" ]; then
     alias ls='ls -GFh'
     export TERM=xterm-256color
+    # from  https://hackercodex.com/guide/mac-development-configuration/
+    # Ensure user-installed binaries take precedence
+    export PATH=/usr/local/bin:$PATH
+    source /usr/local/bin/virtualenvwrapper.sh
 elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
     alias vi='vim'
