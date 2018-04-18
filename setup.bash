@@ -6,9 +6,12 @@
 
 # Install packages via homebrew
 PACKAGES="
+tree
+watch
 tmux
 python3
 python@2
+tfenv
 "
 for package in $PACKAGES
 do
@@ -40,6 +43,10 @@ pip install ansible==1.9.4
 mkvirtualenv ansible2.3
 workon ansible2.3
 pip install ansible==2.3
+
+mkvirtualenv awscli
+workon awscli
+pip install awscli
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
