@@ -21,18 +21,3 @@ else
 fi
 done
 
-# SSH
-mkdir ~/.ssh
-chmod 600 ~/.ssh
-cat > ~/.ssh/config << EOF_SSH_CONFIG
-Host *
-    LogLevel=ERROR
-    StrictHostKeyChecking=no
-    ConnectTimeout=10
-EOF_SSH_CONFIG
-chmod 644 ~/.ssh/config
-touch ~/.ssh/known_hosts
-chmod 000 ~/.ssh/known_hosts
-
-
-
