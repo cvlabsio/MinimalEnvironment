@@ -24,6 +24,30 @@ elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
     alias vi='vim'
     export TERM=linux
+    # LINUXBREW
+    export PATH="${HOME}/.linuxbrew/bin:$PATH"
+    export MANPATH="${HOME}/.linuxbrew/.share/man:$MANPATH"
+    export INFOPATH="${HOME}/.linuxbrew/share/info:$INFOPATH"
+    export PATH="${HOME}/.linuxbrew/sbin:$PATH"
+    source ${HOME}/.linuxbrew/bin/virtualenvwrapper.sh
+
+    # THINGS WE LIKE FROM STOCK .bashrc FROM UBUNTU
+    HISTCONTROL=ignoreboth
+    shopt -s histappend
+    HISTSIZE=1000
+    HISTFILESIZE=2000
+    shopt -s checkwinsize
+    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
 elif [ $MY_OS = "SunOS" ]; then
     alias ls='/usr/gnu/bin/ls --color=auto'
     alias vi='vim'
@@ -41,4 +65,3 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # CUSTOM
-
