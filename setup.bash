@@ -27,12 +27,28 @@ fi
         
 if [ $OS = "Darwin" ]; then
     PACKAGES_BREW="
-tree
-watch
-tmux
-python3
-python@2
+dos2unix
+gdbm
+gettext
+gmp
+icu4c
+libevent
+lynx
+ncdu
+nettle
+openssl
+postgresql
+pwgen
+python
+readline
+sqlite
+stoken
 tfenv
+tmux
+tree
+vault
+watch
+xz
 "
     for package in $PACKAGES_BREW
     do
@@ -69,6 +85,7 @@ if [ $OS = "Darwin" ]; then
     pip install virtualenvwrapper
 
 	source /usr/local/bin/virtualenvwrapper.sh
+    sed -i '' 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
 	# from https://hackercodex.com/guide/python-development-environment-on-mac-osx/
 	mkdir -p ~/Library/Application\ Support/pip
          
@@ -115,6 +132,10 @@ mkvirtualenv ansible2.3
 workon ansible2.3
 pip install ansible==2.3
 
+mkvirtualenv ansible2.6
+workon ansible2.6
+pip install ansible==2.6
+
 mkvirtualenv awscli
 workon awscli
 pip install awscli
@@ -125,6 +146,13 @@ if [ ! -d ~/.tmux ]; then
 	mkdir ~/.tmux
 fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Install vim pluging manager
+# https://github.com/junegunn/vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "Run vim +PlugInstall"
 
 ### Output to todos...
 #tmux todo 

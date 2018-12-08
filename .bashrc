@@ -18,18 +18,18 @@ if [ $MY_OS = "Darwin" ]; then
     export TERM=xterm-256color
     # from  https://hackercodex.com/guide/mac-development-configuration/
     # Ensure user-installed binaries take precedence
-    export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/bin:/usr/local/sbin:$PATH
     source /usr/local/bin/virtualenvwrapper.sh
+
 elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
     alias vi='vim'
     export TERM=linux
     # LINUXBREW
-    export PATH="${HOME}/.linuxbrew/bin:$PATH"
-    export MANPATH="${HOME}/.linuxbrew/.share/man:$MANPATH"
-    export INFOPATH="${HOME}/.linuxbrew/share/info:$INFOPATH"
-    export PATH="${HOME}/.linuxbrew/sbin:$PATH"
-    source ${HOME}/.linuxbrew/bin/virtualenvwrapper.sh
+    export PATH="${HOME}/linuxbrew/bin:${HOME}/linuxbrew/sbin:$PATH"
+    export MANPATH="${HOME}/linuxbrew/share/man:$MANPATH"
+    export INFOPATH="${HOME}/linuxbrew/share/info:$INFOPATH"
+    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
     # THINGS WE LIKE FROM STOCK .bashrc FROM UBUNTU
     HISTCONTROL=ignoreboth
