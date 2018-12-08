@@ -5,3 +5,8 @@ syntax on
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+" Use VIM PLug
+call plug#begin('~/.vim/plugged')
+" Shorthand notation; fetches https://github.com/pearofducks/ansible-vim
+Plug 'pearofducks/ansible-vim'
