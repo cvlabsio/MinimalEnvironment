@@ -1,24 +1,20 @@
 #!/bin/bash
 
 ###
-### Leverage brew - homebrew for mac | linuxbrew for linux
+### Leverage brew - homebrew for mac and linux
 ### 
 
 OS="`uname -s`"
 
 if [ $OS = "Darwin" ]; then
     echo "Darwin"
-    #####/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
        	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
-        sudo apt-get -y install linuxbrew-wrapper
-		sudo apt-get -y install build-essential 
-        brew << EOF
- 
-EOF
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
 fi
 
@@ -113,7 +109,7 @@ fi
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
         if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
-            sudo apt-get -y install virtualenv virtualenvwrapper
+            sudo apt-get -y install virtualenvwrapper
             source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
         fi
 
