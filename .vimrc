@@ -1,4 +1,5 @@
 "Colors
+colorscheme slate
 syntax on
 
 "Useful to avoid indentation issues with Python
