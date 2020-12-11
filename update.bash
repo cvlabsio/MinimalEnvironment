@@ -6,6 +6,7 @@ FILES="
 .bashrc
 .vimrc
 .tmux.conf
+.ansible.cfg
 "
 
 for file in $FILES

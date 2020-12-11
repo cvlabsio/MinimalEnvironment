@@ -1,23 +1,20 @@
 #!/bin/bash
 
 ###
-### Leverage brew - homebrew for mac | linuxbrew for linux
+### Leverage brew - homebrew for mac and linux
 ### 
 
 OS="`uname -s`"
 
 if [ $OS = "Darwin" ]; then
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "Darwin"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
        	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
-        sudo apt-get -y install linuxbrew-wrapper
-		sudo apt-get -y install build-essential 
-        brew << EOF
- 
-EOF
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
 fi
 
@@ -27,16 +24,33 @@ fi
         
 if [ $OS = "Darwin" ]; then
     PACKAGES_BREW="
-tree
-watch
-tmux
-python3
-python@2
+dos2unix
+gdbm
+gettext
+gmp
+icu4c
+libevent
+lynx
+ncdu
+nettle
+openssl
+postgresql
+pwgen
+python
+readline
+sqlite
+stoken
 tfenv
+tmux
+tree
+vault
+watch
+xz
 "
     for package in $PACKAGES_BREW
     do
-    brew install ${package}
+    echo "${package}"
+    #####brew install ${package}
     done
 fi
 
@@ -65,13 +79,24 @@ fi
 ### Install virtualenv
 ### Mac -  from https://github.com/registerguard/registerguard.github.io/wiki/Install-python,-virtualenv,-virtualenvwrapper-in-a-brew-environment
 if [ $OS = "Darwin" ]; then
-    pip install virtualenv
-    pip install virtualenvwrapper
-
-	source /usr/local/bin/virtualenvwrapper.sh
-	# from https://hackercodex.com/guide/python-development-environment-on-mac-osx/
-	mkdir -p ~/Library/Application\ Support/pip
-         
+    
+    SW_VERS_VER="`sw_vers -productVersion | cut -d. -f1-2`"
+    # Mojave
+    if [ $SW_VERS_VER = "10.14" ]; then
+        pip3 install virtualenv
+        pip3 install virtualenvwrapper
+    else
+    # Mojave all the way. Left this here to allow compatability prior to Mojave
+        pip install virtualenv
+        pip install virtualenvwrapper
+    fi
+       
+# use python3 
+sed -i '' 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
+	
+# from https://hackercodex.com/guide/python-development-environment-on-mac-osx/
+mkdir -p ~/Library/Application\ Support/pip
 cat > ~/Library/Application\ Support/pip/pip.conf << EOF_PIP_CONF
 [install]
 require-virtualenv = true
@@ -84,7 +109,7 @@ fi
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
         if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
-            sudo apt-get -y install virtualenv virtualenvwrapper
+            sudo apt-get -y install virtualenvwrapper
             source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
         fi
 
@@ -110,10 +135,13 @@ mkvirtualenv ansible1.9
 workon ansible1.9
 pip install ansible==1.9.4
 
-
 mkvirtualenv ansible2.3
 workon ansible2.3
 pip install ansible==2.3
+
+mkvirtualenv ansible2.6
+workon ansible2.6
+pip install ansible==2.6
 
 mkvirtualenv awscli
 workon awscli
@@ -125,6 +153,13 @@ if [ ! -d ~/.tmux ]; then
 	mkdir ~/.tmux
 fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Install vim pluging manager
+# https://github.com/junegunn/vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim --insecure
+
+echo "Run vim +PlugInstall"
 
 ### Output to todos...
 #tmux todo 
