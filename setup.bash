@@ -92,11 +92,11 @@ tmux
     done
 	fi
 
-        if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]] || [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
-PACKAGES_APT="
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+PACKAGES_RPM="
 tmux
 "
-    for package in $PACKAGES_APT
+    for package in $PACKAGES_RPM
     do
     sudo dnf -y install tmux
     done
@@ -159,6 +159,10 @@ if [ $OS = "Linux" ]; then
             source /usr/local/bin/virtualenvwrapper.sh
         fi
 
+    if [ ! -d $HOME/.config ]; then
+        mkdir $HOME/.config
+    fi
+
     if [ ! -d $HOME/.config/pip ]; then
         mkdir $HOME/.config/pip
     fi
@@ -204,7 +208,7 @@ echo "Press prefix + I (capital I, as in Install) to fetch the plugins."
 # Create ssh_config
 if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
-	chmod 600 ~/.ssh
+	chmod 700 ~/.ssh
 fi
 
 if [ ! -f ~/.ssh/config ]; then
