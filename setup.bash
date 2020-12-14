@@ -105,14 +105,18 @@ fi
 ### Install virtualenv
 ### Mac -  from https://github.com/registerguard/registerguard.github.io/wiki/Install-python,-virtualenv,-virtualenvwrapper-in-a-brew-environment
 if [ $OS = "Darwin" ]; then
+
+    if [ -f ~/Library/Application\ Support/pip/pip.conf ]; then
+        rm ~/Library/Application\ Support/pip/pip.conf 
+    fi
     
-    SW_VERS_VER="`sw_vers -productVersion | cut -d. -f1-2`"
-    # Mojave
-    if [ $SW_VERS_VER = "10.14" ]; then
+    SW_VERS="`sw_vers -productVersion | cut -d. -f1-2`"
+    # Mojave or Catalina... use pip3
+    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ]; then
         pip3 install virtualenv
         pip3 install virtualenvwrapper
     else
-    # Mojave all the way. Left this here to allow compatability prior to Mojave
+    # Left this here to allow compatability prior to Mojave
         pip install virtualenv
         pip install virtualenvwrapper
     fi
