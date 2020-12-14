@@ -26,10 +26,18 @@ elif [ $MY_OS = "Linux" ]; then
     alias vi='vim'
     export TERM=linux
     # LINUXBREW
-    export PATH="${HOME}/linuxbrew/bin:${HOME}/linuxbrew/sbin:$PATH"
-    export MANPATH="${HOME}/linuxbrew/share/man:$MANPATH"
-    export INFOPATH="${HOME}/linuxbrew/share/info:$INFOPATH"
-    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    export PATH="${HOME}/.linuxbrew/bin:${HOME}/.linuxbrew/sbin:$PATH"
+    export MANPATH="${HOME}/.linuxbrew/share/man:$MANPATH"
+    export INFOPATH="${HOME}/.linuxbrew/share/info:$INFOPATH"
+
+    OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
+        if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
+            source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+        fi
+
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+            source /usr/local/bin/virtualenvwrapper.sh
+        fi
 
     # THINGS WE LIKE FROM STOCK .bashrc FROM UBUNTU
     HISTCONTROL=ignoreboth

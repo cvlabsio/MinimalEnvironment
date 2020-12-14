@@ -13,7 +13,7 @@ fi
 
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
-       	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
+       	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]] || [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]] ; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
 fi
@@ -76,7 +76,7 @@ xz
     for package in $PACKAGES_BREW
     do
     echo "${package}"
-    #####brew install ${package}
+    brew install ${package}
     done
 fi
 
@@ -90,6 +90,17 @@ tmux
     do
     sudo apt-get -y install tmux
     done
+	fi
+
+        if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]] || [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+PACKAGES_APT="
+tmux
+"
+    for package in $PACKAGES_APT
+    do
+    sudo dnf -y install tmux
+    done
+	fi
 
 PACKAGES_BREW="
 tfenv
@@ -98,7 +109,6 @@ tfenv
     do
     brew install ${package}
     done
-        fi
 fi
 
 ###
@@ -143,6 +153,12 @@ if [ $OS = "Linux" ]; then
             source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
         fi
 
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+            pip3 install virtualenvwrapper
+            sudo sed -i 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
+            source /usr/local/bin/virtualenvwrapper.sh
+        fi
+
     if [ ! -d $HOME/.config/pip ]; then
         mkdir $HOME/.config/pip
     fi
@@ -157,17 +173,6 @@ require-virtualenv = true
 EOF_PIP_CONF
     fi
 fi
-
-### ASSUMING EVERYTHING ABOVE INSTALLED CORRECTLY
-### BELOW WORKS ON EITHER DARWIN OR LINUX 
-
-mkvirtualenv ansible1.9
-workon ansible1.9
-pip install ansible==1.9.4
-
-mkvirtualenv ansible2.3
-workon ansible2.3
-pip install ansible==2.3
 
 mkvirtualenv ansible2.6
 workon ansible2.6
