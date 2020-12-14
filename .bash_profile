@@ -5,5 +5,9 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-# CUSTOM
+# local customizations go into .bashrc_local
+if [ -f ~/.bashrc_local ]; then
+    . ~/.bashrc_local
+fi
+
 

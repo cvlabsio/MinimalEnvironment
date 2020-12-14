@@ -41,3 +41,46 @@ compares files with the files in your home directory.
 1. Run ./update.bash
 1. Logout and log back in to your shell
 1. Run ./setup.bash
+
+
+
+## Reference
+
+
+### CentOS bootstrap
+```
+### CentOS bootstrap
+sudo dnf install wget unzip gcc make vim -y
+mkdir meh
+cd meh
+wget https://github.com/baldwinsung/MinimalEnvironment/archive/updates.zip
+unzip updates.zip
+cd MinimalEnvironment-updates/
+./update.bash
+#mv ~/.bashrc ~/.bashrc_local
+logout
+ssh #
+cd meh/MinimalEnvironment-updates
+./setup.bash
+logout
+ssh #
+```
+
+### Ubuntu bootstrap
+```
+### Ubuntu bootstrap
+sudo apt install unzip gcc make -y
+mkdir meh
+cd meh
+wget https://github.com/baldwinsung/MinimalEnvironment/archive/updates.zip
+unzip updates.zip
+cd MinimalEnvironment-updates/
+./update.bash
+#mv ~/.bashrc ~/.bashrc_local
+logout
+ssh #
+cd meh/MinimalEnvironment-updates
+./setup.bash
+logout
+ssh #
+```

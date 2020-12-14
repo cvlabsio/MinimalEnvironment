@@ -13,7 +13,7 @@ fi
 
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
-       	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
+       	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]] || [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]] ; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
 fi
@@ -76,7 +76,7 @@ xz
     for package in $PACKAGES_BREW
     do
     echo "${package}"
-    #####brew install ${package}
+    brew install ${package}
     done
 fi
 
@@ -90,6 +90,17 @@ tmux
     do
     sudo apt-get -y install tmux
     done
+	fi
+
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+PACKAGES_RPM="
+tmux
+"
+    for package in $PACKAGES_RPM
+    do
+    sudo dnf -y install tmux
+    done
+	fi
 
 PACKAGES_BREW="
 tfenv
@@ -98,21 +109,24 @@ tfenv
     do
     brew install ${package}
     done
-        fi
 fi
 
 ###
 ### Install virtualenv
 ### Mac -  from https://github.com/registerguard/registerguard.github.io/wiki/Install-python,-virtualenv,-virtualenvwrapper-in-a-brew-environment
 if [ $OS = "Darwin" ]; then
+
+    if [ -f ~/Library/Application\ Support/pip/pip.conf ]; then
+        rm ~/Library/Application\ Support/pip/pip.conf 
+    fi
     
-    SW_VERS_VER="`sw_vers -productVersion | cut -d. -f1-2`"
-    # Mojave
-    if [ $SW_VERS_VER = "10.14" ]; then
+    SW_VERS="`sw_vers -productVersion | cut -d. -f1-2`"
+    # Mojave or Catalina... use pip3
+    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ]; then
         pip3 install virtualenv
         pip3 install virtualenvwrapper
     else
-    # Mojave all the way. Left this here to allow compatability prior to Mojave
+    # Left this here to allow compatability prior to Mojave
         pip install virtualenv
         pip install virtualenvwrapper
     fi
@@ -139,6 +153,16 @@ if [ $OS = "Linux" ]; then
             source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
         fi
 
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+            pip3 install virtualenvwrapper
+            sudo sed -i 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
+            source /usr/local/bin/virtualenvwrapper.sh
+        fi
+
+    if [ ! -d $HOME/.config ]; then
+        mkdir $HOME/.config
+    fi
+
     if [ ! -d $HOME/.config/pip ]; then
         mkdir $HOME/.config/pip
     fi
@@ -153,17 +177,6 @@ require-virtualenv = true
 EOF_PIP_CONF
     fi
 fi
-
-### ASSUMING EVERYTHING ABOVE INSTALLED CORRECTLY
-### BELOW WORKS ON EITHER DARWIN OR LINUX 
-
-mkvirtualenv ansible1.9
-workon ansible1.9
-pip install ansible==1.9.4
-
-mkvirtualenv ansible2.3
-workon ansible2.3
-pip install ansible==2.3
 
 mkvirtualenv ansible2.6
 workon ansible2.6
@@ -195,7 +208,7 @@ echo "Press prefix + I (capital I, as in Install) to fetch the plugins."
 # Create ssh_config
 if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
-	chmod 600 ~/.ssh
+	chmod 700 ~/.ssh
 fi
 
 if [ ! -f ~/.ssh/config ]; then
