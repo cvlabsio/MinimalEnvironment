@@ -11,3 +11,4 @@ set shiftwidth=4
 call plug#begin('~/.vim/plugged')
 " Shorthand notation; fetches https://github.com/pearofducks/ansible-vim
 Plug 'pearofducks/ansible-vim'
+Plug 'airblade/vim-gitgutter'

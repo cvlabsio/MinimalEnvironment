@@ -27,18 +27,24 @@ if [ $OS = "Darwin" ]; then
 apr
 apr-util
 awscli
+cdpr
+direnv
 dos2unix
+fing
 fontconfig
+fping
 freetype
 gd
 gdbm
 gettext
+git
 gmp
 go
 graphviz
 htop
 icu4c
 ifstat
+instalooter
 iperf
 jpeg
 jq
@@ -53,6 +59,7 @@ netcat
 nettle
 oniguruma
 openssl
+ranger
 perl
 postgresql
 pstree
@@ -61,9 +68,11 @@ python
 python3
 readline
 sqlite
+starship
 stoken
 subversion
 terraform
+terragrunt
 tfenv
 tmux
 tree
@@ -71,7 +80,9 @@ vault
 vnstat
 watch
 webp
+whatmask
 xz
+youtube-dl
 "
     for package in $PACKAGES_BREW
     do
@@ -193,7 +204,7 @@ if [ ! -d ~/.tmux ]; then
 fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Install vim pluging manager
+# Install vim plugin manager
 # https://github.com/junegunn/vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim --insecure
@@ -226,3 +237,8 @@ if [ ! -f ~/.ssh/known_hosts ]; then
 	chmod 000 ~/.ssh/known_hosts
 fi
 
+# go
+mkdir -p $HOME/go/{bin,src}
+
+# ohmyzsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
