@@ -53,14 +53,14 @@ compares files with the files in your home directory.
 sudo dnf install wget unzip gcc make vim -y
 mkdir meh
 cd meh
-wget https://github.com/baldwinsung/MinimalEnvironment/archive/updates.zip
-unzip updates.zip
-cd MinimalEnvironment-updates/
+wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
+unzip master.zip
+cd MinimalEnvironment-master/
 ./update.bash
 #mv ~/.bashrc ~/.bashrc_local
 logout
 ssh #
-cd meh/MinimalEnvironment-updates
+cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
 ssh #
@@ -72,14 +72,14 @@ ssh #
 sudo apt install unzip gcc make -y
 mkdir meh
 cd meh
-wget https://github.com/baldwinsung/MinimalEnvironment/archive/updates.zip
-unzip updates.zip
-cd MinimalEnvironment-updates/
+wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
+unzip master.zip
+cd MinimalEnvironment-master/
 ./update.bash
 #mv ~/.bashrc ~/.bashrc_local
 logout
 ssh #
-cd meh/MinimalEnvironment-updates
+cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
 ssh #
