@@ -36,6 +36,7 @@ freetype
 gd
 gdbm
 gettext
+gh
 git
 gmp
 go

@@ -23,11 +23,8 @@ color syntax highlighting and tab settings
 ### setup.bash
 Installs the following
 >
-1. homebrew for mac
-1. linuxbrew for linux
-1. packages in brew format
-1. packages in apt format
-1. packages in yum format ( future )
+1. homebrew for mac or linux
+1. install packages via brew
 1. virtualenv
 1. tmux plugin manager
 1. ssh config
@@ -62,6 +59,11 @@ cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
 # open new shell
+cd ~/repos/external
+mkdir baldwinsung
+cd baldwinsung
+gh repo clone baldwinsung/MinimalEnvironment
+cd MinimalEnvironment
 ```
 
 ### CentOS bootstrap
