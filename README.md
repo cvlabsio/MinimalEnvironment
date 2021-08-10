@@ -48,6 +48,7 @@ compares files with the files in your home directory.
 
 ### Mac bootstrap
 ```
+### Mac bootstrap
 mkdir meh
 cd meh
 curl -LO https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
@@ -100,3 +101,6 @@ cd meh/MinimalEnvironment-master
 logout
 # open new shell
 ```
+
+### Migrating Apple Terminal Settings
+copy com.apple.Terminal.plist to ~/Library/Preferences/com.apple.Terminal.plist via Finder
