@@ -1,5 +1,5 @@
 # Minimal environment files
-Set of scripts and configs to get started with a minimal environment. 
+#Set of scripts and configs to get started with a minimal environment. 
 
 ## Files
 ### .ansible.cfg
@@ -23,11 +23,8 @@ color syntax highlighting and tab settings
 ### setup.bash
 Installs the following
 >
-1. homebrew for mac
-1. linuxbrew for linux
-1. packages in brew format
-1. packages in apt format
-1. packages in yum format ( future )
+1. homebrew for mac or linux
+1. install packages via brew
 1. virtualenv
 1. tmux plugin manager
 1. ssh config
@@ -46,6 +43,28 @@ compares files with the files in your home directory.
 
 ## Reference
 
+### Mac bootstrap
+```
+### Mac bootstrap
+mkdir meh
+cd meh
+curl -LO https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
+unzip master.zip
+cd MinimalEnvironment-master/
+./update.bash
+#mv ~/.bashrc ~/.bashrc_local
+logout
+# open new shell
+cd meh/MinimalEnvironment-master
+./setup.bash
+logout
+# open new shell
+cd ~/repos/external
+mkdir baldwinsung
+cd baldwinsung
+gh repo clone baldwinsung/MinimalEnvironment
+cd MinimalEnvironment
+```
 
 ### CentOS bootstrap
 ```
@@ -59,11 +78,11 @@ cd MinimalEnvironment-master/
 ./update.bash
 #mv ~/.bashrc ~/.bashrc_local
 logout
-ssh #
+# open new shell
 cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
-ssh #
+# open new shell
 ```
 
 ### Ubuntu bootstrap
@@ -78,9 +97,12 @@ cd MinimalEnvironment-master/
 ./update.bash
 #mv ~/.bashrc ~/.bashrc_local
 logout
-ssh #
+# open new shell
 cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
-ssh #
+# open new shell
 ```
+
+### Migrating Apple Terminal Settings
+copy com.apple.Terminal.plist to ~/Library/Preferences/com.apple.Terminal.plist via Finder

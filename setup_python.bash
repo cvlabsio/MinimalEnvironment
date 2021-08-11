@@ -1,9 +1,6 @@
 #!/bin/bash
 
-
-exec setup_brew.bash
-exec setup_repos.bash
-exec setup_ssh.bash
+OS="`uname -s`"
 
 ###
 ### Install virtualenv
@@ -15,18 +12,20 @@ if [ $OS = "Darwin" ]; then
     fi
     
     SW_VERS="`sw_vers -productVersion | cut -d. -f1-2`"
-    # Mojave or Catalina... use pip3
-    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ]; then
+    # Mojave, Catalina or Big Sur use pip3
+    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ] || [ $SW_VERS = "11.5" ]; then
+        echo "pip3"
         pip3 install virtualenv
         pip3 install virtualenvwrapper
     else
     # Left this here to allow compatability prior to Mojave
+        echo "pip"
         pip install virtualenv
         pip install virtualenvwrapper
     fi
        
 # use python3 
-sed -i '' 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
+sed -i '' 's/which python)/which python3)/' /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
 	
 # from https://hackercodex.com/guide/python-development-environment-on-mac-osx/
@@ -40,6 +39,8 @@ require-virtualenv = true
 EOF_PIP_CONF
 fi 
 
+
+### Linux
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
         if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
@@ -72,32 +73,13 @@ EOF_PIP_CONF
     fi
 fi
 
+### create frequently used virtualenv
 mkvirtualenv ansible2.6
 workon ansible2.6
 pip install ansible==2.6
+deactivate
 
 mkvirtualenv awscli
 workon awscli
 pip install awscli
 deactivate
-
-# Install tmux plugin manager
-if [ ! -d ~/.tmux ]; then
-	mkdir ~/.tmux
-fi
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Install vim plugin manager
-# https://github.com/junegunn/vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim --insecure
-
-echo "Run vim +PlugInstall"
-
-### Output to todos...
-#tmux todo 
-echo "install tmux plugins from tmux"
-echo "Press prefix + I (capital I, as in Install) to fetch the plugins."
-
-# ohmyzsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
