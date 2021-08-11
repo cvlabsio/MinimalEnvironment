@@ -7,23 +7,19 @@ if [ ! -d ~/.ssh ]; then
 fi
 chmod 700 ~/.ssh
 
-if [ ! -f ~/.ssh/config ]; then
+if [ -f ~/.ssh/config ]; then
+    rm ~/.ssh/config
+fi
+
 	cat > ~/.ssh/config << EOF_SSH_CONFIG
 Host *
 LogLevel=ERROR
 StrictHostKeyChecking=no
+UserKnownHostsFile=/dev/null
 ConnectTimeout=10
 EOF_SSH_CONFIG
-fi
 chmod 644 ~/.ssh/config
 
-### ssh known_hosts
-echo "do not allow writes to known_hosts"
-if [ ! -f ~/.ssh/known_hosts ]; then
-	touch ~/.ssh/known_hosts
-else
+if [ -f ~/.ssh/known_hosts ]; then
     rm -f ~/.ssh/known_hosts
-	touch ~/.ssh/known_hosts
 fi
-chmod 000 ~/.ssh/known_hosts
-
