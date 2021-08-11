@@ -8,7 +8,15 @@ OS="`uname -s`"
 
 if [ $OS = "Darwin" ]; then
     echo "Darwin"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+   
+    echo "Checking if brew is already installed..." 
+    which brew &> /dev/null
+    if [ $? -eq 1 ]; then
+        echo >&2 "brew is not installed. installing brew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    else
+        echo "brew is already installed!"
+    fi
 fi
 
 if [ $OS = "Linux" ]; then
@@ -17,6 +25,10 @@ if [ $OS = "Linux" ]; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
 fi
+
+
+### Setup paths for go
+mkdir -p $HOME/go/{bin,src}
 
 ###
 ### PACKAGES
@@ -85,6 +97,7 @@ xz
 youtube-dl
 "
 
+printf "\ninstalling packages via brew..."
 for package in $PACKAGES_BREW
 do
 echo "${package}"
