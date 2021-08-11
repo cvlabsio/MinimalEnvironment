@@ -2,8 +2,8 @@
 
 
 exec setup_brew.bash
-
 exec setup_repos.bash
+exec setup_ssh.bash
 
 ###
 ### Install virtualenv
@@ -98,30 +98,6 @@ echo "Run vim +PlugInstall"
 #tmux todo 
 echo "install tmux plugins from tmux"
 echo "Press prefix + I (capital I, as in Install) to fetch the plugins."
-
-# Create ssh_config
-if [ ! -d ~/.ssh ]; then
-	mkdir ~/.ssh
-	chmod 700 ~/.ssh
-fi
-
-if [ ! -f ~/.ssh/config ]; then
-	cat > ~/.ssh/config << EOF_SSH_CONFIG
-Host *
-LogLevel=ERROR
-StrictHostKeyChecking=no
-ConnectTimeout=10
-EOF_SSH_CONFIG
-	chmod 644 ~/.ssh/config
-fi
-
-if [ ! -f ~/.ssh/known_hosts ]; then
-	touch ~/.ssh/known_hosts
-	chmod 000 ~/.ssh/known_hosts
-fi
-
-# go
-mkdir -p $HOME/go/{bin,src}
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
