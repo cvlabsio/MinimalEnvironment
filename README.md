@@ -46,6 +46,7 @@ compares files with the files in your home directory.
 ### Mac bootstrap
 ```
 ### Mac bootstrap
+chsh -s /bin/bash
 mkdir meh
 cd meh
 curl -LO https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
@@ -59,11 +60,6 @@ cd meh/MinimalEnvironment-master
 ./setup.bash
 logout
 # open new shell
-cd ~/repos/external
-mkdir baldwinsung
-cd baldwinsung
-gh repo clone baldwinsung/MinimalEnvironment
-cd MinimalEnvironment
 ```
 
 ### CentOS bootstrap

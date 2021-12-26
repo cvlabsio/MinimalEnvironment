@@ -9,6 +9,7 @@ FILES="
 .ansible.cfg
 .zshrc
 .starship-config.toml
+.gitconfig
 "
 
 for file in $FILES
