@@ -18,8 +18,9 @@ if [ $MY_OS = "Darwin" ]; then
     export TERM=xterm-256color
     # from  https://hackercodex.com/guide/mac-development-configuration/
     # Ensure user-installed binaries take precedence
-    export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-    source /usr/local/bin/virtualenvwrapper.sh
+    export PATH=/usr/local/bin:/usr/local/sbin:/opt/homebrew/bin:$PATH
+    V=`which virtualenvwrapper.sh`
+    source ${V}
 
 elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'

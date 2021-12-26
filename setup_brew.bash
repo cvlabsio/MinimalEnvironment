@@ -37,6 +37,7 @@ mkdir -p $HOME/go/{bin,src}
 PACKAGES_BREW="
 apr
 apr-util
+autopep8
 awscli
 cdpr
 direnv
@@ -69,9 +70,11 @@ mtr
 ncdu
 netcat
 nettle
+nmap
 oniguruma
 openssl
 ranger
+packer
 perl
 postgresql
 pstree

@@ -10,13 +10,20 @@ if [ $OS = "Darwin" ]; then
     if [ -f ~/Library/Application\ Support/pip/pip.conf ]; then
         rm ~/Library/Application\ Support/pip/pip.conf 
     fi
-    
+
     SW_VERS="`sw_vers -productVersion | cut -d. -f1-2`"
-    # Mojave, Catalina or Big Sur use pip3
-    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ] || [ $SW_VERS = "11.5" ]; then
+    # Mojave, Catalina, Big Sur or Monterey use pip3
+    echo $SW_VERS
+    if [ $SW_VERS = "10.14" ] || [ $SW_VERS = "10.15" ] || [[ $SW_VERS = 11.* ]] || [[ $SW_VERS = 12.* ]]; then
         echo "pip3"
         pip3 install virtualenv
         pip3 install virtualenvwrapper
+    
+        # use python3 
+        V=`which virtualenvwrapper.sh`
+        sed -i '' 's/which python)/which python3)/' ${V}
+        source ${V}
+
     else
     # Left this here to allow compatability prior to Mojave
         echo "pip"
@@ -24,10 +31,6 @@ if [ $OS = "Darwin" ]; then
         pip install virtualenvwrapper
     fi
        
-# use python3 
-sed -i '' 's/which python)/which python3)/' /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
-	
 # from https://hackercodex.com/guide/python-development-environment-on-mac-osx/
 mkdir -p ~/Library/Application\ Support/pip
 cat > ~/Library/Application\ Support/pip/pip.conf << EOF_PIP_CONF
@@ -39,7 +42,6 @@ require-virtualenv = true
 EOF_PIP_CONF
 fi 
 
-
 ### Linux
 if [ $OS = "Linux" ]; then
         OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
@@ -50,7 +52,7 @@ if [ $OS = "Linux" ]; then
 
         if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
             pip3 install virtualenvwrapper
-            sudo sed -i 's/which python/which python3/' /usr/local/bin/virtualenvwrapper.sh
+            sudo sed -i 's/which python)/which python3)/' /usr/local/bin/virtualenvwrapper.sh
             source /usr/local/bin/virtualenvwrapper.sh
         fi
 
