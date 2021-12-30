@@ -20,8 +20,9 @@ if [ $OS = "Darwin" ]; then
         pip3 install virtualenvwrapper
     
         # use python3 
-        sed -i '' 's/which python)/which python3)/' /usr/local/bin/virtualenvwrapper.sh
-        source /usr/local/bin/virtualenvwrapper.sh
+        V=`which virtualenvwrapper.sh`
+        sed -i '' 's/which python)/which python3)/' ${V}
+        source ${V}
 
     else
     # Left this here to allow compatability prior to Mojave
