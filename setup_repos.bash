@@ -2,10 +2,9 @@
 
 # create directories
 if [ ! -d ~/repos ]; then
-    mkdir ~/repos
+	mkdir ~/repos
 fi
 
 if [ ! -d ~/repos/external ]; then
-    mkdir ~/repos/external
+	mkdir ~/repos/external
 fi
-
