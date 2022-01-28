@@ -26,6 +26,12 @@ if [ $OS = "Linux" ]; then
 	fi
 fi
 
+### check if brew was actually installed
+if ! command -v brew &>/dev/null; then
+	echo "brew could not be found."
+	exit
+fi
+
 ### Setup paths for go
 mkdir -p $HOME/go/{bin,src}
 
@@ -100,7 +106,7 @@ xz
 youtube-dl
 "
 
-printf "\ninstalling packages via brew..."
+printf "\ninstalling packages via brew...\n"
 for package in $PACKAGES_BREW; do
 	echo "${package}"
 	brew install ${package}

@@ -1,5 +1,7 @@
 # Minimal environment files
-#Set of scripts and configs to get started with a minimal environment. 
+Set of scripts and configs to get started with a minimal environment. 
+
+Most recently verified on Ubuntu 20.04, Apple Monterey on both Intel and Apple Silicon. 
 
 ## Files
 ### .ansible.cfg
@@ -84,7 +86,7 @@ logout
 ### Ubuntu bootstrap
 ```
 ### Ubuntu bootstrap
-sudo apt install unzip gcc make -y
+sudo apt install unzip gcc make vim curl git zsh -y
 mkdir meh
 cd meh
 wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
