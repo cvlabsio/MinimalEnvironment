@@ -46,8 +46,13 @@ fi
 if [ $OS = "Linux" ]; then
 	OS_LINUX_FLAVOR="$(cat /etc/os-release | head -1)"
 	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
-		sudo apt-get -y install virtualenvwrapper
-		source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+		pip3 install virtualenvwrapper
+
+		# use python3
+		V="$(which virtualenvwrapper.sh)"
+		sed -i 's/which python)/which python3)/' ${V}
+		source ${V}
+
 	fi
 
 	if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then

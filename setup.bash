@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SETUPS="brew repos ssh python tmux vim ohmyzsh"
+SETUPS="ubuntu brew repos ssh python tmux vim ohmyzsh"
 
 for SETUP in $SETUPS; do
 	echo ${SETUP}
