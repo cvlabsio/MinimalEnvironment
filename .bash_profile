@@ -1,6 +1,6 @@
 # .bash_profile is executed for login shells
 # .bashrc is executed for interactive non-login shells
-#  Login Shells = Via Putty or ssh
+#  Login Shells = ssh
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi

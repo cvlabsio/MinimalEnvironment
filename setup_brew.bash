@@ -66,11 +66,13 @@ instalooter
 iperf
 jpeg
 jq
+keepassxc
 libevent
 libpng
 libtiff
 libtool
 lynx
+macdown
 mtr
 ncdu
 netcat
@@ -95,6 +97,7 @@ subversion
 terraform
 terragrunt
 tfenv
+tflint
 tmux
 tree
 vault

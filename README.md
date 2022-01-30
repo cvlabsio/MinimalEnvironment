@@ -1,51 +1,11 @@
 # Minimal environment files
 Set of scripts and configs to get started with a minimal environment. 
 
-Most recently verified on Ubuntu 20.04, Apple Monterey on both Intel and Apple Silicon. 
-
-## Files
-### .ansible.cfg
-simple ansible configuration file
-
-### .bash_profile
-make sure we source .bashrc
-> .bash_profile is executed for login shells
->  
-> .bashrc is executed for interactive non-login shells
-
-### .bashrc
-magic happens here
-
-### .tmux.conf
-useful tmux plugins
-
-### .vimrc
-color syntax highlighting and tab settings
-
-### setup.bash
-Installs the following
->
-1. homebrew for mac or linux
-1. install packages via brew
-1. virtualenv
-1. tmux plugin manager
-1. ssh config
-1. ssh known_hosts
-
-### update.bash
-compares files with the files in your home directory. 
-
 ## Instructions
 
-1. Run ./update.bash
-1. Logout and log back in to your shell
-1. Run ./setup.bash
-
-
-
-## Reference
-
 ### Mac bootstrap
+Verified with Monterey on both Intel and Apple Silicon
+
 ```
 ### Mac bootstrap
 chsh -s /bin/bash
@@ -65,6 +25,8 @@ logout
 ```
 
 ### CentOS bootstrap
+CentOS 7
+
 ```
 ### CentOS bootstrap
 sudo dnf install wget unzip gcc make vim -y
@@ -84,6 +46,8 @@ logout
 ```
 
 ### Ubuntu bootstrap
+Verified with Ubuntu 20.04
+
 ```
 ### Ubuntu bootstrap
 sudo apt install unzip gcc make vim curl git zsh -y
