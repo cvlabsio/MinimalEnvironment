@@ -1,6 +1,6 @@
 # .bash_profile is executed for login shells
 # .bashrc is executed for interactive non-login shells
-#  Login Shells = Via Putty or ssh
+#  Login Shells = ssh
 
 ### FUNCTIONS
 # Add git branch name to bash prompt from https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
