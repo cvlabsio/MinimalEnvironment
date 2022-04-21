@@ -25,11 +25,11 @@ logout
 ```
 
 ### CentOS bootstrap
-CentOS 7
+Verified with CentOS Stream 9
 
 ```
 ### CentOS bootstrap
-sudo dnf install wget unzip gcc make vim -y
+sudo dnf install wget unzip gcc make vim python3-pip git-core -y
 mkdir meh
 cd meh
 wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
