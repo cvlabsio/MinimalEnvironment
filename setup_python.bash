@@ -45,21 +45,12 @@ fi
 ### Linux
 if [ $OS = "Linux" ]; then
 	OS_LINUX_FLAVOR="$(cat /etc/os-release | head -1)"
-	if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
 		pip3 install virtualenvwrapper
 
 		# use python3
 		V="$(which virtualenvwrapper.sh)"
 		sed -i 's/which python)/which python3)/' ${V}
 		source ${V}
-
-	fi
-
-	if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
-		pip3 install virtualenvwrapper
-		sudo sed -i 's/which python)/which python3)/' /usr/local/bin/virtualenvwrapper.sh
-		source /usr/local/bin/virtualenvwrapper.sh
-	fi
 
 	if [ ! -d $HOME/.config ]; then
 		mkdir $HOME/.config
