@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 ###
 ### Leverage brew - homebrew for mac and linux
@@ -40,6 +40,7 @@ mkdir -p $HOME/go/{bin,src}
 ###
 
 PACKAGES_BREW="
+ansible-lint
 apr
 apr-util
 autopep8

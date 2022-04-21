@@ -13,10 +13,11 @@ fi
 
 cat >~/.ssh/config <<EOF_SSH_CONFIG
 Host *
-LogLevel=ERROR
-StrictHostKeyChecking=no
-UserKnownHostsFile=/dev/null
-ConnectTimeout=10
+    LogLevel=ERROR
+    StrictHostKeyChecking=no
+    UserKnownHostsFile=/dev/null
+    ConnectTimeout=10
+    IdentityFile ~/some/other/key
 EOF_SSH_CONFIG
 chmod 644 ~/.ssh/config
 
