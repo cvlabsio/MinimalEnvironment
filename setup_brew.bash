@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 ###
 ### Leverage brew - homebrew for mac and linux
