@@ -62,6 +62,9 @@ if [ $OS = "Linux" ]; then
 		sed -i 's/which python)/which python3)/' ${V}
 		source ${V}
 
+        #Fix AttributeError: module ‘virtualenv.create.via_global_ref.builtin.cpython.mac_os’ has no attribute ‘CPython2macOsArmFramework’
+        pip3 uninstall virtualenv
+
 	if [ ! -d $HOME/.config ]; then
 		mkdir $HOME/.config
 	fi

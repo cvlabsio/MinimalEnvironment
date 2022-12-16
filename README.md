@@ -50,7 +50,7 @@ Verified with Ubuntu 20.04
 
 ```
 ### Ubuntu bootstrap
-sudo apt install unzip gcc make vim curl git zsh -y
+sudo apt install unzip gcc make vim curl git zsh virtualenvwrapper -y
 mkdir meh
 cd meh
 wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
