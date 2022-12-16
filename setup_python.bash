@@ -44,12 +44,21 @@ fi
 
 ### Linux
 if [ $OS = "Linux" ]; then
-	OS_LINUX_FLAVOR="$(cat /etc/os-release | head -1)"
-		pip3 install virtualenvwrapper
+    OS_LINUX_FLAVOR="`cat /etc/os-release | head -1`"
+        if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
+		    pip3 install virtualenvwrapper
+        fi
+     
+        if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
+		    pip3 install virtualenvwrapper
+        fi
 
-		# use python3
-		#V="$(which virtualenvwrapper.sh)"
-        V="/usr/share/virtualenvwrapper/virtualenvwrapper.sh "
+        if [[ ${OS_LINUX_FLAVOR} = *"Hat"* ]]; then
+		    pip3 install --user virtualenvwrapper virtualenv
+        fi
+
+		# update virtualwrapp to use python3
+		V="$(which virtualenvwrapper.sh)"
 		sed -i 's/which python)/which python3)/' ${V}
 		source ${V}
 

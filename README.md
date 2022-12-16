@@ -66,5 +66,38 @@ logout
 # open new shell
 ```
 
+### RHEL bootstrap
+Verified with RHEL8
+
+```
+### RHEL  bootstrap
+sudo dnf install wget unzip gcc make vim python3-pip git-core zsh -y
+mkdir meh
+cd meh
+wget https://github.com/baldwinsung/MinimalEnvironment/archive/master.zip
+unzip master.zip
+cd MinimalEnvironment-master/
+./update.bash
+#mv ~/.bashrc ~/.bashrc_local
+logout
+# open new shell
+cd meh/MinimalEnvironment-master
+./setup_minimal.bash
+logout
+# open new shell
+```
+
 ### Migrating Apple Terminal Settings
 copy com.apple.Terminal.plist to ~/Library/Preferences/com.apple.Terminal.plist via Finder
+
+### SSH Keys
+General information and generating ssh key pairs and copying the public key to a host
+
+```
+ssh-keygen
+```
+
+```
+ssh-copy-id
+```
+
