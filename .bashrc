@@ -26,6 +26,10 @@ elif [ $MY_OS = "Linux" ]; then
     alias ls='ls --color=auto'
     alias vi='vim'
     export TERM=linux
+
+    # PIP USER PATH
+    export PATH="${HOME}/.local/bin:$PATH"
+
     # LINUXBREW
     export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
     export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
@@ -38,6 +42,10 @@ elif [ $MY_OS = "Linux" ]; then
 
         if [[ ${OS_LINUX_FLAVOR} = *"CentOS"* ]]; then
             source /usr/local/bin/virtualenvwrapper.sh
+        fi
+
+        if [[ ${OS_LINUX_FLAVOR} = *"Hat"* ]]; then
+            source ${HOME}/.local/bin/virtualenvwrapper.sh
         fi
 
     # THINGS WE LIKE FROM STOCK .bashrc FROM UBUNTU
