@@ -48,9 +48,13 @@ if [ $OS = "Linux" ]; then
 		pip3 install virtualenvwrapper
 
 		# use python3
-		V="$(which virtualenvwrapper.sh)"
+		#V="$(which virtualenvwrapper.sh)"
+        V="/usr/share/virtualenvwrapper/virtualenvwrapper.sh "
 		sed -i 's/which python)/which python3)/' ${V}
 		source ${V}
+
+        #Fix AttributeError: module ‘virtualenv.create.via_global_ref.builtin.cpython.mac_os’ has no attribute ‘CPython2macOsArmFramework’
+        pip3 uninstall virtualenv
 
 	if [ ! -d $HOME/.config ]; then
 		mkdir $HOME/.config
