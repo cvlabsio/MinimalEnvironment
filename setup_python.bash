@@ -63,7 +63,7 @@ if [ $OS = "Linux" ]; then
 		source ${V}
 
         #Fix AttributeError: module ‘virtualenv.create.via_global_ref.builtin.cpython.mac_os’ has no attribute ‘CPython2macOsArmFramework’
-        pip3 uninstall virtualenv
+        #pip3 uninstall virtualenv
 
 	if [ ! -d $HOME/.config ]; then
 		mkdir $HOME/.config
