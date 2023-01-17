@@ -54,7 +54,7 @@ if [ $OS = "Linux" ]; then
         fi
 
         if [[ ${OS_LINUX_FLAVOR} = *"Hat"* ]]; then
-		    pip3 install --user virtualenvwrapper
+		    pip3 install --user virtualenvwrapper virtualenv
         fi
 
 		# update virtualwrapp to use python3

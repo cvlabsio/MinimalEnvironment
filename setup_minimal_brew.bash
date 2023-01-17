@@ -20,6 +20,11 @@ if [ $OS = "Darwin" ]; then
 fi
 
 if [ $OS = "Linux" ]; then
+
+    if [ -d /home/linuxbrew/.linuxbrew/var/homebrew ]; then
+        sudo chown -R $(whoami) /home/linuxbrew/.linuxbrew/var/homebrew
+    fi
+
     OS_LINUX_FLAVOR="$(cat /etc/os-release | head -1)"
     if [[ ${OS_LINUX_FLAVOR} = *"Ubuntu"* ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
