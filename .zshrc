@@ -6,9 +6,11 @@ source $ZSH/oh-my-zsh.sh
 export STARSHIP_CONFIG=~/.starship-config.toml
 export WORKON_HOME=$HOME/.virtualenvs
 export GOPATH=$HOME/go
-export PATH=/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH:$GOPATH/bin
+export PATH=/opt/homebrew/bin:$PATH:$GOPATH/bin
 V=`which virtualenvwrapper.sh`
 source ${V}
 
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"

@@ -68,6 +68,7 @@ iperf
 jpeg
 jq
 keepassxc
+kubectl
 libevent
 libpng
 libtiff
